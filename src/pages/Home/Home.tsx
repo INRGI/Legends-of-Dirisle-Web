@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container } from "./Home.styled";
 import IntroAnimation from "../../components/IntroAnimation";
+import Header from "../../components/Header";
 
 const Home: React.FC = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -8,9 +9,12 @@ const Home: React.FC = () => {
   return showIntro ? (
     <IntroAnimation onFinish={() => setShowIntro(false)} />
   ) : (
-    <Container>
-      <h1>Home</h1>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <h1>Home</h1>
+      </Container>
+    </>
   );
 };
 
