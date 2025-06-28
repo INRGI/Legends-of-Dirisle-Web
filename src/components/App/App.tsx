@@ -24,8 +24,7 @@ export function App() {
   };
 
   if (accepted === null) {
-    // Чекаємо поки перевіримо localStorage
-    return null; // або спінер
+    return null;
   }
 
   if (!accepted) {
@@ -36,6 +35,11 @@ export function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+
+        <Route path="/shop" element={<Home />} />
+        <Route path="/about" element={<Home />} />
+        <Route path="/rules" element={<Home />} />
+
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Route>
