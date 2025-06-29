@@ -7,6 +7,7 @@ import Layout from "../Layout";
 import EpilepsyWarning from "../EpilepsyWarning";
 
 const Home = lazy(() => import("../../pages/Home/Home"));
+const RulesPage = lazy(() => import("../../pages/RulesPage/RulesPage"));
 
 const STORAGE_KEY = "epilepsyWarningAccepted";
 
@@ -38,7 +39,7 @@ export function App() {
 
         <Route path="/shop" element={<Home />} />
         <Route path="/about" element={<Home />} />
-        <Route path="/rules" element={<Home />} />
+        <Route path="/rules" element={<RulesPage />} />
 
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
