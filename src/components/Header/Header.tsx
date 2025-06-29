@@ -47,7 +47,7 @@ const Header: React.FC = () => {
             <p>ПРАВИЛА</p>
           </StyledLink>
           <DiscordButton
-            href="https://discord.gg/"
+            href="https://discord.gg/cNvta6cXNb"
             target="_blank"
             rel="noopener noreferrer"
             className="desktop"
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
           </StyledLink>
 
           <DiscordButton
-            href="https://discord.gg/"
+            href="https://discord.gg/cNvta6cXNb"
             target="_blank"
             rel="noopener noreferrer"
             className="mobile"
