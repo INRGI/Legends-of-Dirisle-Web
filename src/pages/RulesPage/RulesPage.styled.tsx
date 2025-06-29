@@ -25,6 +25,7 @@ export const Title = styled.h1`
   color: #ff4444;
   font-size: 2rem;
   text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+  margin: 0;
   margin-bottom: 24px;
   text-align: center;
 `;
@@ -66,6 +67,7 @@ export const CategoryCard = styled.div`
   border: 1px solid rgba(255, 0, 0, 0.2);
   border-radius: 12px;
   padding: 20px;
+  margin: 0;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
 
   opacity: 0;
@@ -91,7 +93,7 @@ export const RuleText = styled.p`
 export const CategoryTitle = styled.h2`
   color: #ff2e2e;
   font-size: 1.5rem;
-  margin-bottom: 16px;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

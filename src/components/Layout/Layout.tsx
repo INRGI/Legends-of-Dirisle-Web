@@ -1,10 +1,15 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Header from "../Header";
+import IntroAnimation from "../IntroAnimation";
 
 const Layout: React.FC = () => {
-  return (
+  const [showIntro, setShowIntro] = useState(true);
+
+  return showIntro ? (
+    <IntroAnimation onFinish={() => setShowIntro(false)} />
+  ) : (
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
