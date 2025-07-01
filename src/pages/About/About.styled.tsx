@@ -11,8 +11,32 @@ const fadeUp = keyframes`
   }
 `;
 
+export const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  gap: 24px; 
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  p{
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column; 
+    
+    align-items: center; 
+    gap: 16px;
+  }
+`;
+
 export const Logo = styled.img`
-  width: 300px;
+  width: 150px;
+  height: auto;
+  flex-shrink: 0;
 `;
 
 export const Container = styled.div`
@@ -20,6 +44,7 @@ export const Container = styled.div`
   color: #ccc;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: center;
   padding: 80px 16px 40px;
   min-height: 100vh;
@@ -31,7 +56,6 @@ export const Section = styled.section`
   max-width: 1000px;
   width: 100%;
   padding: 0;
-  margin-bottom: 40px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -61,7 +85,7 @@ export const StatItem = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex: 1 1 100%;
     max-width: 100%;
     min-width: auto;
@@ -84,7 +108,7 @@ export const ModsSection = styled.div`
   max-width: 1000px;
   width: 100%;
   background: #1a1a1a;
-  padding: 24px 24px 24px 24px;
+  padding: 24px;
   border-radius: 12px;
   border: 1px solid rgba(255, 0, 0, 0.2);
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.08);
@@ -95,11 +119,18 @@ export const ModsSection = styled.div`
   margin: 0 auto;
 
   h2 {
-    color: #ff2e2e;
-    font-size: 1.5rem;
+    color: #d94b4b;
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 1.6rem;
     margin: 0;
+    letter-spacing: 0.08em;
+    text-shadow:
+      1px 1px 2px rgba(0, 0, 0, 0.7),
+      0 0 5px rgba(217, 75, 75, 0.6);
+    user-select: none;
   }
 `;
+
 
 export const ModsList = styled.ul`
   list-style: none;
