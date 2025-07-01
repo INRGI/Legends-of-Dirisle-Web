@@ -120,13 +120,9 @@ export const ModsSection = styled.div`
 
   h2 {
     color: #d94b4b;
-    font-family: 'UnifrakturCook', cursive;
     font-size: 1.6rem;
     margin: 0;
     letter-spacing: 0.08em;
-    text-shadow:
-      1px 1px 2px rgba(0, 0, 0, 0.7),
-      0 0 5px rgba(217, 75, 75, 0.6);
     user-select: none;
   }
 `;
