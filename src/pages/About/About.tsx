@@ -2,7 +2,6 @@ import React from "react";
 import {
   Container,
   Section,
-  Title,
   StatGrid,
   StatItem,
   Label,
@@ -10,6 +9,7 @@ import {
   ModsSection,
   ModsList,
   ModItem,
+  Logo,
 } from "./About.styled";
 import { useServerStatus } from "../../components/utils/serverStatus";
 
@@ -22,7 +22,7 @@ const AboutPage: React.FC = () => {
 
   return (
     <Container>
-      <Title>Legends of Deerisle PvE</Title>
+      <Logo src="/logo2.png" alt="Logo" />
 
       <Section>
         <p style={{ marginBottom: "2rem", fontSize: "1.05rem", color: "#aaa" }}>
@@ -49,7 +49,7 @@ const AboutPage: React.FC = () => {
       </Section>
 
       <ModsSection>
-        <h2 >🧩 Встановлені моди</h2>
+        <h2 >Встановлені моди:</h2>
         <ModsList>
           {attr.details?.modNames.map((mod, i) => (
             <ModItem key={i}>{mod}</ModItem>

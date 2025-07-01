@@ -11,6 +11,10 @@ const fadeUp = keyframes`
   }
 `;
 
+export const Logo = styled.img`
+  width: 300px;
+`;
+
 export const Container = styled.div`
   background: #0b0b0b;
   color: #ccc;
@@ -20,17 +24,6 @@ export const Container = styled.div`
   padding: 80px 16px 40px;
   min-height: 100vh;
   animation: ${fadeUp} 1.5s ease-out;
-  box-sizing: border-box;
-`;
-
-export const Title = styled.h1`
-  color: #ff4444;
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 32px;
-  text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
-  max-width: 1000px;
-  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -114,28 +107,47 @@ export const ModsList = styled.ul`
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
+  gap: 10px 12px;
   box-sizing: border-box;
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex-direction: column;
-    gap: 6px 0;
+    gap: 8px 0;
   }
 `;
 
 export const ModItem = styled.li`
-  flex: 1 1 calc(50% - 24px);
-  padding: 6px 0;
-  color: #ccc;
-  font-size: 0.95rem;
-  border-bottom: 1px dashed rgba(255, 0, 0, 0.08);
-  transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: #ff4444;
+  background: #1a1a1a;
+  border: 1.5px solid #ff4444;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: default;
 
   &:hover {
-    color: #fff;
+    background: #ff4444;
+    color: #1a1a1a;
+    border-color: #ff6666;
   }
 
-  @media (max-width: 768px) {
-    flex: 1 1 100%;
+  @media (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    white-space: normal;
+    justify-content: center;
+    padding: 10px 0;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 8px 0;
   }
 `;
+
+
