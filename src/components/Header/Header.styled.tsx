@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
 
 export const HeaderContainer = styled.header`
   position: fixed;
@@ -40,7 +40,7 @@ export const Nav = styled.nav`
   }
 `;
 
-export const StyledLink = styled(NavLink)`
+export const StyledLink = styled(Link)`
   background-color: #141414;
   color: #ccc;
   padding: 10px 20px;

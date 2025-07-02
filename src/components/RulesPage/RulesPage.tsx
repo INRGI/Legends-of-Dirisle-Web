@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import rulesData from "./rules.json";
 import {
   Container,
   Title,
@@ -14,6 +15,7 @@ import {
   RulePunishment
 } from "./RulesPage.styled";
 import { FaSearch, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import rulesData from "@/data/rules.json";
 
 const RulesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,5 +1,8 @@
-import { keyframes } from "@emotion/react";
-import styled from "@emotion/styled";
+'use client'
+
+import { keyframes } from '@emotion/react'
+import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
 
 const smokeAnimation = keyframes`
   0% {
@@ -11,12 +14,12 @@ const smokeAnimation = keyframes`
   100% {
     background-position: 0% 50%;
   }
-`;
+`
 
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
-`;
+`
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +42,7 @@ const Container = styled.div`
   position: fixed;
   inset: 0;
   z-index: 10000;
-`;
+`
 
 const Title = styled.h1`
   font-size: 2.5rem;
@@ -47,7 +50,7 @@ const Title = styled.h1`
   color: #ff4d4d;
   text-shadow: 0 0 8px rgba(255, 77, 77, 0.7);
   margin: 0;
-`;
+`
 
 const Text = styled.p`
   max-width: 450px;
@@ -55,7 +58,7 @@ const Text = styled.p`
   line-height: 1.6;
   color: #ccc;
   margin: 0;
-`;
+`
 
 const Button = styled.button`
   margin-top: 30px;
@@ -79,23 +82,37 @@ const Button = styled.button`
     outline: 2px solid #cc3333;
     outline-offset: 2px;
   }
-`;
+`
 
-interface Props {
-  onAccept: () => void;
+const STORAGE_KEY = 'epilepsyWarningAccepted'
+
+export default function EpilepsyGate({ children }: { children: React.ReactNode }) {
+  const [accepted, setAccepted] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    setAccepted(saved === 'true')
+  }, [])
+
+  const handleAccept = () => {
+    localStorage.setItem(STORAGE_KEY, 'true')
+    setAccepted(true)
+  }
+
+  if (accepted === null) return null
+
+  if (!accepted) {
+    return (
+      <Container role="dialog" aria-modal="true" aria-labelledby="warning-title">
+        <Title id="warning-title">Увага!</Title>
+        <Text>
+          На цьому сайті є анімовані ефекти, які можуть викликати дискомфорт у людей з фоточутливою епілепсією.
+          Якщо у вас є такі проблеми, рекомендуємо не використовувати сайт або бути обережними.
+        </Text>
+        <Button onClick={handleAccept}>Я розумію і хочу продовжити</Button>
+      </Container>
+    )
+  }
+
+  return <>{children}</>
 }
-
-export const EpilepsyWarning: React.FC<Props> = ({ onAccept }) => {
-  return (
-    <Container role="dialog" aria-modal="true" aria-labelledby="warning-title">
-      <Title id="warning-title">Увага!</Title>
-      <Text>
-        На цьому сайті є анімовані ефекти, які можуть викликати дискомфорт у людей з фоточутливою епілепсією.
-        Якщо у вас є такі проблеми, рекомендуємо не використовувати сайт або бути обережними.
-      </Text>
-      <Button onClick={onAccept}>Я розумію і хочу продовжити</Button>
-    </Container>
-  );
-};
-
-export default EpilepsyWarning;

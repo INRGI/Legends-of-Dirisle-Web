@@ -22,8 +22,11 @@ export const Container = styled.div`
   height: 100vh;
 
   background-color: #0c0c0c;
-  background-image:
-    radial-gradient(circle at 30% 30%, rgba(255, 0, 0, 0.08), transparent 60%),
+  background-image: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 0, 0, 0.08),
+      transparent 60%
+    ),
     radial-gradient(circle at 70% 70%, rgba(255, 20, 20, 0.06), transparent 65%),
     radial-gradient(circle at 50% 50%, rgba(200, 0, 0, 0.05), transparent 75%);
   background-blend-mode: screen;

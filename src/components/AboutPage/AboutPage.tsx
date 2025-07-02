@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Container,
@@ -11,8 +13,8 @@ import {
   ModItem,
   Logo,
   HeaderWrapper,
-} from "./About.styled";
-import { useServerStatus } from "../../components/utils/serverStatus";
+} from "./AboutPage.styled";
+import { useServerStatus } from "@/hooks/useServerStatus";
 
 const AboutPage: React.FC = () => {
   const { data, loading } = useServerStatus("30125816");

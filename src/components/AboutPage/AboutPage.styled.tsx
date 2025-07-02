@@ -14,21 +14,21 @@ const fadeUp = keyframes`
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  gap: 24px; 
+  justify-content: space-between;
+  gap: 24px;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 
-  p{
+  p {
     padding: 0;
     margin: 0;
   }
 
   @media (max-width: 480px) {
-    flex-direction: column; 
-    
-    align-items: center; 
+    flex-direction: column;
+
+    align-items: center;
     gap: 16px;
   }
 `;
@@ -127,7 +127,6 @@ export const ModsSection = styled.div`
   }
 `;
 
-
 export const ModsList = styled.ul`
   list-style: none;
   margin: 0;
@@ -176,5 +175,3 @@ export const ModItem = styled.li`
     padding: 8px 0;
   }
 `;
-
-

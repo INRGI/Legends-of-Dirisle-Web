@@ -19,9 +19,11 @@ import {
   MdOutlineBlock,
   MdOutlineShoppingCart,
 } from "react-icons/md";
+import { usePathname } from 'next/navigation'
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname()
 
   return (
     <>
@@ -31,18 +33,18 @@ const Header: React.FC = () => {
         </LogoGroup>
 
         <Nav>
-          <StyledLink to="/">
+          <StyledLink href="/" className={pathname === "/" ? "active" : ""}>
             <IoHome /> <p>ГОЛОВНА</p>
           </StyledLink>
-          <StyledLink to="/shop">
+          <StyledLink href="/shop" className={pathname === "/shop" ? "active" : ""}>
             <MdOutlineShoppingCart />
             <p>МАГАЗИН</p>
           </StyledLink>
-          <StyledLink to="/about">
+          <StyledLink href="/about" className={pathname === "/about" ? "active" : ""}>
             <MdInfoOutline />
             <p>ПРО НАС</p>
           </StyledLink>
-          <StyledLink to="/rules">
+          <StyledLink href="/rules" className={pathname === "/rules" ? "active" : ""}>
             <MdOutlineBlock />
             <p>ПРАВИЛА</p>
           </StyledLink>
@@ -63,18 +65,18 @@ const Header: React.FC = () => {
 
       <MobileNavOverlay className={menuOpen ? "open" : ""}>
         <MobileNav>
-          <StyledLink to="/" onClick={() => setMenuOpen(false)}>
+          <StyledLink href="/" onClick={() => setMenuOpen(false)} className={pathname === "/" ? "active" : ""}>
             <IoHome /> <p>ГОЛОВНА</p>
           </StyledLink>
-          <StyledLink to="/shop" onClick={() => setMenuOpen(false)}>
+          <StyledLink href="/shop" onClick={() => setMenuOpen(false)} className={pathname === "/shop" ? "active" : ""}>
             <MdOutlineShoppingCart />
             <p>МАГАЗИН</p>
           </StyledLink>
-          <StyledLink to="/about" onClick={() => setMenuOpen(false)}>
+          <StyledLink href="/about" onClick={() => setMenuOpen(false)} className={pathname === "/about" ? "active" : ""}>
             <MdInfoOutline />
             <p>ПРО НАС</p>
           </StyledLink>
-          <StyledLink to="/rules" onClick={() => setMenuOpen(false)}>
+          <StyledLink href="/rules" onClick={() => setMenuOpen(false)} className={pathname === "/rules" ? "active" : ""}>
             <MdOutlineBlock />
             <p>ПРАВИЛА</p>
           </StyledLink>

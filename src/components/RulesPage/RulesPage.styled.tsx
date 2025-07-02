@@ -12,7 +12,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-
 export const Container = styled.div`
   padding: 100px 24px 40px;
   margin: 0;
