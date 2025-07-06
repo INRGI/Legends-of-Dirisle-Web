@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServiceClient } from "@/lib/supabase-server";
 import { v4 as uuidv4 } from "uuid";
 
@@ -66,15 +66,16 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
   const supabase = await createSupabaseServiceClient();
 
   const { data: product, error: fetchError } = await supabase
     .from("products")
     .select("images")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (fetchError) {
@@ -104,7 +105,7 @@ export async function DELETE(
   const { error: deleteProductError } = await supabase
     .from("products")
     .delete()
-    .eq("id", params.id);
+    .eq("id", id);
 
   if (deleteProductError) {
     return NextResponse.json(
