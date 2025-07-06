@@ -5,8 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: any
 ) {
+  const { id } = context.params;
   const supabase = await createSupabaseServiceClient();
   const formData = await req.formData();
 
@@ -55,7 +56,7 @@ export async function PATCH(
   const { data, error } = await supabase
     .from("products")
     .update(updates)
-    .eq("id", params.id)
+    .eq("id", id)
     .select();
 
   if (error) {
