@@ -67,9 +67,9 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: any
 ) {
-  const id = params.id;
+  const { id } = context.params;
   const supabase = await createSupabaseServiceClient();
 
   const { data: product, error: fetchError } = await supabase
