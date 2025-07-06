@@ -1,1 +1,1 @@
-export {default} from "./StoreSection";
+export {default} from "./CategorySelector";
