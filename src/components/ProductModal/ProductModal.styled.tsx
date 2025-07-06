@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 99999;
 `;
 
 export const ModalContainer = styled.div`
