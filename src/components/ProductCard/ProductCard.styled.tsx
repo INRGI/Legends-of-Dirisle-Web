@@ -1,51 +1,53 @@
 import styled from "@emotion/styled";
 
 export const Card = styled.div`
-  background: #111;
-  border: 1px solid #333;
+  background: #1e1e1e;
   border-radius: 12px;
-  padding: 12px;
-  color: white;
-  width: 100%;
-  max-width: 280px;
+  overflow: hidden;
+  border: 1px solid #333;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: 160px;
+  height: 150px;
   object-fit: cover;
-  border-radius: 8px;
 `;
 
-export const Title = styled.h3`
-  font-size: 1rem;
+export const Info = styled.div`
+  padding: 0.8rem;
+`;
+
+export const Name = styled.h3`
+  font-size: 1.2rem;
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
-export const Price = styled.div`
+export const Price = styled.p`
+  color: #ff3333;
   font-weight: bold;
-  color: #f00;
+  margin: 0.3rem 0;
 `;
 
-export const ButtonGroup = styled.div`
+export const Actions = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 `;
 
-export const Btn = styled.button`
-  flex: 1;
-  padding: 6px;
-  background: #222;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 6px;
+export const ActionButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #ff3333;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: 0.2s;
+
   &:hover {
-    background: #f00;
+    color: #ffffff;
   }
 `;

@@ -1,31 +1,38 @@
-"use client";
-
 import { Product } from "@/types";
 import {
   Card,
-  Image,
-  Title,
+  Info,
+  Name,
   Price,
-  ButtonGroup,
-  Btn,
+  Actions,
+  ActionButton,
 } from "./ProductCard.styled";
+import ImageCarousel from "@/components/ImageCarousel";
+import { FaEdit } from "react-icons/fa";
+import { MdOutlineDelete } from "react-icons/md";
 
 type Props = {
   product: Product;
-  onEdit: (product: Product) => void;
-  onDelete: (id: string) => void;
+  onEdit: () => void;
+  onDelete: () => void;
 };
 
 export default function ProductCard({ product, onEdit, onDelete }: Props) {
   return (
     <Card>
-      <Image src={product.images?.[0]} alt={product.title} />
-      <Title>{product.title}</Title>
-      <Price>{product.price} $</Price>
-      <ButtonGroup>
-        <Btn onClick={() => onEdit(product)}>Редагувати</Btn>
-        <Btn onClick={() => onDelete(product.id)}>Видалити</Btn>
-      </ButtonGroup>
+      <ImageCarousel images={product.images} />
+      <Info>
+        <Name>{product.title}</Name>
+        <Price>{product.price} грн</Price>
+        <Actions>
+          <ActionButton onClick={onEdit}>
+            <FaEdit />
+          </ActionButton>
+          <ActionButton onClick={onDelete}>
+            <MdOutlineDelete />
+          </ActionButton>
+        </Actions>
+      </Info>
     </Card>
   );
 }

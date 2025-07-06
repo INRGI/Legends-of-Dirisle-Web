@@ -1,114 +1,149 @@
 import { useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import axios from "axios";
 import { Product, Category } from "@/types";
 import CategorySelector from "../CategorySelector/CategorySelector";
-import ProductForm from "../ProductForm";
-import SkeletonLoader from "../SkeletonLoader";
+import { IoIosArrowRoundBack, IoMdAdd } from "react-icons/io";
+import {
+  BackButton,
+  TitleContainer,
+  Wrapper,
+  Title,
+  ProductsGrid,
+  AddButton,
+  Actions,
+  ButtonText,
+  SearchBar,
+} from "./StoreSection.styled";
+import Loader from "../Loader";
+import ProductModal from "../ProductModal";
 import ProductCard from "../ProductCard";
-import { getCategoriesWithProducts } from "@/lib/api";
+import { FaSearch } from "react-icons/fa";
 
-const Wrapper = styled.div`
-  color: #fff;
-  background: #121212;
-  min-height: 100vh;
-  padding: 2rem;
-`;
+type Props = {
+  onBack: () => void;
+};
 
-const Title = styled.h1`
-  font-size: 2rem;
-  color: #ff3333;
-  margin-bottom: 1rem;
-`;
-
-const ProductsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-`;
-
-export default function AdminShop() {
+export default function AdminShop({ onBack }: Props) {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string>("");
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchCategories = async () => {
-    const res = await getCategoriesWithProducts();
-    setCategories(res);
-    if (!activeCategory && res.length > 0) {
-      setActiveCategory(res[0].id);
-    }
+    const res = await axios.get("/api/categories");
+    setCategories(res.data);
   };
 
-  const fetchProducts = async (categoryId: string) => {
-    setLoading(true);
+  const fetchProducts = async () => {
     const res = await axios.get("/api/products");
-    const filtered = res.data.filter(
-      (p: Product) => p.category_id === categoryId
-    );
-    setProducts(filtered);
+    setProducts(res.data);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchCategories();
+    fetchProducts();
   }, []);
 
-  useEffect(() => {
-    if (activeCategory) {
-      fetchProducts(activeCategory);
-    }
-  }, [activeCategory]);
-
   const handleCreate = async (data: FormData) => {
-    await axios.post("/api/products", data);
-    fetchProducts(activeCategory);
+    await axios.post("/api/products/create", data);
+    fetchProducts();
+    setModalOpen(false);
   };
 
   const handleUpdate = async (id: string, data: FormData) => {
     await axios.patch(`/api/products/${id}`, data);
-    fetchProducts(activeCategory);
+    fetchProducts();
     setEditingProduct(null);
+    setModalOpen(false);
   };
 
   const handleDelete = async (id: string) => {
     await axios.delete(`/api/products/${id}`);
-    fetchProducts(activeCategory);
+    fetchProducts();
   };
+
+  useEffect(() => {
+    const term = searchTerm.toLowerCase();
+
+    const filtered = products.filter((product) => {
+      const matchesCategory =
+        !activeCategory || product.category_id === activeCategory;
+      const matchesSearch = product.title.toLowerCase().includes(term);
+      return matchesCategory && matchesSearch;
+    });
+
+    setFilteredProducts(filtered);
+  }, [products, searchTerm, activeCategory]);
 
   return (
     <Wrapper>
-      <Title>Магазин</Title>
-      <CategorySelector
-        categories={categories}
-        selectedCategoryId={activeCategory}
-        onSelect={(id) => setActiveCategory(id || "")}
-      />
+      <TitleContainer>
+        <Title>Магазин</Title>
 
-      <ProductForm
-        categories={categories}
-        product={editingProduct}
-        onCreate={handleCreate}
-        onUpdate={handleUpdate}
-        onCancel={() => setEditingProduct(null)}
-      />
+        <Actions>
+          <AddButton onClick={() => setModalOpen(true)}>
+            <IoMdAdd size={20} />
+            <ButtonText>Створити</ButtonText>
+          </AddButton>
+          <BackButton onClick={onBack}>
+            <IoIosArrowRoundBack size={20} />
+            <ButtonText>Назад</ButtonText>
+          </BackButton>
+        </Actions>
+      </TitleContainer>
 
       {loading ? (
-        <SkeletonLoader />
+        <Loader />
       ) : (
-        <ProductsGrid>
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onEdit={() => setEditingProduct(product)}
-              onDelete={() => handleDelete(product.id)}
+        <>
+          <CategorySelector
+            categories={categories}
+            selectedCategoryId={activeCategory}
+            onSelect={(id) => setActiveCategory(id || "")}
+          />
+
+          <SearchBar>
+            <FaSearch />
+            <input
+              type="text"
+              placeholder="Пошук продуктів"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-          ))}
-        </ProductsGrid>
+          </SearchBar>
+
+          <ProductsGrid>
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onEdit={() => {
+                  setEditingProduct(product);
+                  setModalOpen(true);
+                }}
+                onDelete={() => handleDelete(product.id)}
+              />
+            ))}
+          </ProductsGrid>
+        </>
+      )}
+
+      {modalOpen && (
+        <ProductModal
+          categories={categories}
+          product={editingProduct}
+          onCreate={handleCreate}
+          onUpdate={handleUpdate}
+          onClose={() => {
+            setModalOpen(false);
+            setEditingProduct(null);
+          }}
+        />
       )}
     </Wrapper>
   );

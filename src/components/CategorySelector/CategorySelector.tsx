@@ -2,6 +2,7 @@
 
 import { Category } from "@/types";
 import { Wrapper, Button } from "./CategorySelector.styled";
+import { useEffect } from "react";
 
 type Props = {
   categories: Category[];
@@ -14,11 +15,13 @@ export default function CategorySelector({
   selectedCategoryId,
   onSelect,
 }: Props) {
+  useEffect(() => {
+    if (!selectedCategoryId && categories.length > 0) {
+      onSelect(categories[0].id);
+    }
+  }, [categories]);
   return (
     <Wrapper>
-      <Button active={!selectedCategoryId} onClick={() => onSelect(null)}>
-        Усі
-      </Button>
       {categories.map((cat) => (
         <Button
           key={cat.id}
