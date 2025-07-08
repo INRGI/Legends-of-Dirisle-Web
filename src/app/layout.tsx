@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   themeColor: "#0f0f0f",
   robots: "index, follow",
