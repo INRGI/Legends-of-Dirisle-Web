@@ -3,9 +3,39 @@ import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
 
 export const metadata: Metadata = {
-  title: "Legends of Dirisle",
-  description: "Legends of Dirisle",
+  title: "Legends of Deerisle | PvE сервер DayZ",
+  description:
+    "Legends of Deerisle — PvE сервер DayZ для поціновувачів атмосферного виживання. Унікальна карта Deerisle, баланс між хардкором і комфортом, кастомні івенти, моди, економіка та тепла спільнота без рейдів.",
+  keywords: [
+    "DayZ сервер",
+    "DayZ PvE",
+    "Deerisle сервер",
+    "Legends of Deerisle",
+    "DayZ моди",
+    "DayZ Ukraine",
+    "DayZ комфортний сервер",
+    "DayZ survival",
+  ],
+  metadataBase: new URL("https://legends-of-dirisle.vercel.app/"),
+  alternates: {
+    canonical: "https://legends-of-dirisle.vercel.app/",
+  },
+  openGraph: {
+    title: "Legends of Deerisle — PvE DayZ сервер",
+    description:
+      "PvE сервер на мапі Deerisle з кастомною економікою, подіями, унікальними модами та дружньою атмосферою без рейдів.",
+    url: "https://legends-of-dirisle.vercel.app/",
+    siteName: "Legends of Deerisle",
+    locale: "uk_UA",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  themeColor: "#0f0f0f",
+  robots: "index, follow",
 };
+
 
 export default function RootLayout({
   children,
@@ -13,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ua">
+    <html lang="uk">
       <body>
         <ClientWrapper>{children}</ClientWrapper>
       </body>

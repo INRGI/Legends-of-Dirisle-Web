@@ -52,7 +52,7 @@ const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
 
             <h2>{selected.title}</h2>
             <p>{selected.description}</p>
-            <Price style={{ marginTop: 12 }}>{selected.price} грн</Price>
+            <Price>{selected.price} грн</Price>
           </ModalContent>
         </ModalOverlay>
       )}

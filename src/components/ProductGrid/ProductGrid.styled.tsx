@@ -80,7 +80,7 @@ export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 999998;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
@@ -100,7 +100,7 @@ export const ModalContent = styled.div`
 
   h2 {
     margin: 0;
-    padding: 15px;
+    padding: 0 15px 0 15px;
     font-size: 1.2rem;
   }
 
@@ -133,6 +133,8 @@ export const ModalSlider = styled.div`
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 16px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `;
 
 export const ModalSlide = styled.div`
@@ -147,4 +149,6 @@ export const ModalImage = styled.img`
   height: 300px;
   object-fit: cover;
   border-radius: 6px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `;
