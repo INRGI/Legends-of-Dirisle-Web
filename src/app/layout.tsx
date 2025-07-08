@@ -9,8 +9,12 @@ export const metadata: Metadata = {
   keywords: [
     "DayZ сервер",
     "DayZ PvE",
+    "PvE DayZ",
+    "PvE DayZ сервер",
+    "Український DayZ сервер",
+    "PvE DayZ сервер Україна",
     "Deerisle сервер",
-    "Legends of Deerisle",
+    "Legends of Dirisle",
     "DayZ моди",
     "DayZ Ukraine",
     "DayZ комфортний сервер",
