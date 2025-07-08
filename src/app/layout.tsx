@@ -28,6 +28,13 @@ export const metadata: Metadata = {
     siteName: "Legends of Deerisle",
     locale: "uk_UA",
     type: "website",
+    images: [
+      {
+        url: "https://legends-of-dirisle.vercel.app/logo2.png",
+        width: 800,
+        height: 600,
+      },
+    ]
   },
   icons: {
     icon: "/favicon.ico",
