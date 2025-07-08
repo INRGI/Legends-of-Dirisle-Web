@@ -28,7 +28,7 @@ const AboutPage: React.FC = () => {
       <HeaderWrapper>
         <Logo src="/logo2.png" alt="Logo" />
         <p style={{ fontSize: "1.05rem", color: "#aaa" }}>
-          <strong>Legends of Deerisle</strong> — це PvE сервер, створений для
+          <strong>Legends of Dirisle</strong> — це PvE сервер, створений для
           справжніх поціновувачів атмосферного виживання. Тут ви знайдете баланс
           між хардкором та комфортом, багатий вибір модів, продуману економіку,
           кастомні івенти, унікальну карту Deerisle і теплу спільноту без

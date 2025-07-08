@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     <>
       <HeaderContainer>
         <LogoGroup>
-          <Logo>Legends of Deerisle</Logo>
+          <Logo>Legends of Dirisle</Logo>
         </LogoGroup>
 
         <Nav>

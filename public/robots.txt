@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://legends-of-dirisle.vercel.app/sitemap.xml
