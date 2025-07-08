@@ -139,7 +139,6 @@ export default function ProductModal({
           <Input
             type="file"
             accept="image/*"
-            required
             multiple
             onChange={(e) => {
               const selectedFiles = Array.from(e.target.files || []);
