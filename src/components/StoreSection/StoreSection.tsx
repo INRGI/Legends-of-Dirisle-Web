@@ -33,6 +33,17 @@ export default function AdminShop({ onBack }: Props) {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalOpen]);
+
   const fetchCategories = async () => {
     const res = await axios.get("/api/categories");
     setCategories(res.data);

@@ -46,17 +46,35 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
+export const CardInfoContainer = styled.div`
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+`;
+
 export const Title = styled.h3`
   font-size: 1rem;
   color: #eee;
-  padding: 10px 14px 0;
+  padding: 0;
 `;
 
 export const Price = styled.div`
   color: #ff4444;
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0 0 10px 14px;
+  padding: 0;
+`;
+
+
+export const ModalPrice = styled.div`
+  color: #ff4444;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0 0 15px 15px;
 `;
 
 export const EmptyWrapper = styled.div`
@@ -83,6 +101,7 @@ export const ModalOverlay = styled.div`
   z-index: 999998;
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
   display: flex;
@@ -94,6 +113,8 @@ export const ModalContent = styled.div`
   background: #1a1a1a;
   border-radius: 12px;
   max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
   width: 90%;
   color: #eee;
   position: relative;
@@ -110,6 +131,7 @@ export const ModalContent = styled.div`
     margin: 0;
     padding: 15px;
     white-space: pre-line;
+    max-height: calc(100%);
   }
 `;
 

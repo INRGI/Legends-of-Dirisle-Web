@@ -8,6 +8,7 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 99999;
+  max-height: 100vh;
 `;
 
 export const ModalContainer = styled.div`
@@ -16,6 +17,8 @@ export const ModalContainer = styled.div`
   border-radius: 12px;
   width: 100%;
   max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
   color: white;
   box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
 

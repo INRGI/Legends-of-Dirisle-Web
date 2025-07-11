@@ -53,6 +53,11 @@ export const Tab = styled.button<{ active: boolean }>`
   & svg {
     font-size: 1.1rem;
   }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
 `;
 
 export const ProductsSection = styled.section`

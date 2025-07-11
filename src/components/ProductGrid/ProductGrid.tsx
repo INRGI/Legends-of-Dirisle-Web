@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   EmptyWrapper,
@@ -17,6 +17,8 @@ import {
   ModalSlider,
   ModalSlide,
   ModalImage,
+  CardInfoContainer,
+  ModalPrice,
 } from "./ProductGrid.styled";
 import { useKeenSlider } from "keen-slider/react";
 import { Product } from "@/types";
@@ -25,6 +27,17 @@ import "keen-slider/keen-slider.min.css";
 
 const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
   const [selected, setSelected] = useState<Product | null>(null);
+
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selected]);
 
   if (products.length === 0) {
     return (
@@ -39,20 +52,26 @@ const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
     <>
       <Grid>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} onClick={() => setSelected(product)} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            onClick={() => setSelected(product)}
+          />
         ))}
       </Grid>
 
       {selected && (
         <ModalOverlay onClick={() => setSelected(null)}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClick={() => setSelected(null)}><FiX /></CloseButton>
+            <CloseButton onClick={() => setSelected(null)}>
+              <FiX />
+            </CloseButton>
 
             <ModalSliderWrapper images={selected.images} />
 
             <h2>{selected.title}</h2>
             <p>{selected.description}</p>
-            <Price>{selected.price} грн</Price>
+            <ModalPrice>{selected.price} грн</ModalPrice>
           </ModalContent>
         </ModalOverlay>
       )}
@@ -62,7 +81,10 @@ const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
 
 export default ProductGrid;
 
-const ProductCard: React.FC<{ product: Product; onClick: () => void }> = ({ product, onClick }) => {
+const ProductCard: React.FC<{ product: Product; onClick: () => void }> = ({
+  product,
+  onClick,
+}) => {
   const hasMultipleImages = product.images.length > 1;
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     hasMultipleImages
@@ -86,8 +108,10 @@ const ProductCard: React.FC<{ product: Product; onClick: () => void }> = ({ prod
           </Slide>
         ))}
       </Slider>
-      <Title>{product.title}</Title>
-      <Price>{product.price} грн</Price>
+      <CardInfoContainer>
+        <Title>{product.title}</Title>
+        <Price>{product.price} грн</Price>
+      </CardInfoContainer>
     </Card>
   );
 };
