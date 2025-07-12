@@ -10,9 +10,11 @@ import {
 import { Product } from "@/types";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import { FaCar } from "react-icons/fa";
+import { BsBackpack2 } from "react-icons/bs";
 import { GiPistolGun } from "react-icons/gi";
 import axios from "axios";
 import Loader from "../Loader";
+import { PiTreasureChest } from "react-icons/pi";
 
 const StorePage: React.FC = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
@@ -30,6 +32,16 @@ const StorePage: React.FC = () => {
       id: "7f490c8f-0a0c-4b1c-b1e4-9a8b6fa80c55",
       name: "Зброя",
       icon: <GiPistolGun />,
+    },
+    {
+      id: "2a484dc1-da18-424f-947c-9057efe32e81",
+      name: "Рюкзаки",
+      icon:<BsBackpack2 />,
+    },
+    {
+      id: "a24889c5-6216-46ba-8cc0-d1d339bad4d3",
+      name: "Контейнери",
+      icon: <PiTreasureChest/>,
     },
   ];
 

@@ -30,6 +30,10 @@ export const Logo = styled.div`
   color: #d03939;
   text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
   white-space: nowrap;
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const Image = styled.img`
