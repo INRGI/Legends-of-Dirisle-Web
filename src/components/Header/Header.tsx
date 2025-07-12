@@ -9,6 +9,7 @@ import {
   LogoGroup,
   MobileNavOverlay,
   DiscordButton,
+  Image,
 } from "./Header.styled";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -19,16 +20,17 @@ import {
   MdOutlineBlock,
   MdOutlineShoppingCart,
 } from "react-icons/md";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <>
       <HeaderContainer>
-        <LogoGroup>
+        <LogoGroup href="/">
+          <Image src="/logo.png" alt="Logo" />
           <Logo>Legends of Dirisle</Logo>
         </LogoGroup>
 
@@ -36,15 +38,24 @@ const Header: React.FC = () => {
           <StyledLink href="/" className={pathname === "/" ? "active" : ""}>
             <IoHome /> <p>ГОЛОВНА</p>
           </StyledLink>
-          <StyledLink href="/shop" className={pathname === "/shop" ? "active" : ""}>
+          <StyledLink
+            href="/shop"
+            className={pathname === "/shop" ? "active" : ""}
+          >
             <MdOutlineShoppingCart />
             <p>МАГАЗИН</p>
           </StyledLink>
-          <StyledLink href="/about" className={pathname === "/about" ? "active" : ""}>
+          <StyledLink
+            href="/about"
+            className={pathname === "/about" ? "active" : ""}
+          >
             <MdInfoOutline />
             <p>ПРО НАС</p>
           </StyledLink>
-          <StyledLink href="/rules" className={pathname === "/rules" ? "active" : ""}>
+          <StyledLink
+            href="/rules"
+            className={pathname === "/rules" ? "active" : ""}
+          >
             <MdOutlineBlock />
             <p>ПРАВИЛА</p>
           </StyledLink>
@@ -63,20 +74,41 @@ const Header: React.FC = () => {
         </MobileMenuButton>
       </HeaderContainer>
 
-      <MobileNavOverlay className={menuOpen ? "open" : ""}>
+      <MobileNavOverlay
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setMenuOpen(false);
+        }}
+        className={menuOpen ? "open" : ""}
+      >
         <MobileNav>
-          <StyledLink href="/" onClick={() => setMenuOpen(false)} className={pathname === "/" ? "active" : ""}>
+          <StyledLink
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            className={pathname === "/" ? "active" : ""}
+          >
             <IoHome /> <p>ГОЛОВНА</p>
           </StyledLink>
-          <StyledLink href="/shop" onClick={() => setMenuOpen(false)} className={pathname === "/shop" ? "active" : ""}>
+          <StyledLink
+            href="/shop"
+            onClick={() => setMenuOpen(false)}
+            className={pathname === "/shop" ? "active" : ""}
+          >
             <MdOutlineShoppingCart />
             <p>МАГАЗИН</p>
           </StyledLink>
-          <StyledLink href="/about" onClick={() => setMenuOpen(false)} className={pathname === "/about" ? "active" : ""}>
+          <StyledLink
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+            className={pathname === "/about" ? "active" : ""}
+          >
             <MdInfoOutline />
             <p>ПРО НАС</p>
           </StyledLink>
-          <StyledLink href="/rules" onClick={() => setMenuOpen(false)} className={pathname === "/rules" ? "active" : ""}>
+          <StyledLink
+            href="/rules"
+            onClick={() => setMenuOpen(false)}
+            className={pathname === "/rules" ? "active" : ""}
+          >
             <MdOutlineBlock />
             <p>ПРАВИЛА</p>
           </StyledLink>

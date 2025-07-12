@@ -17,18 +17,25 @@ export const HeaderContainer = styled.header`
   border-bottom: 1px solid rgba(255, 0, 0, 0.15);
 `;
 
-export const LogoGroup = styled.div`
+export const LogoGroup = styled(Link)`
   display: flex;
   align-items: center;
+  text-decoration: none;
   gap: 12px;
 `;
 
 export const Logo = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
-  color: #ff4444;
+  color: #d03939;
   text-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
   white-space: nowrap;
+`;
+
+export const Image = styled.img`
+  width: 35px;
+  height: auto;
+  flex-shrink: 0;
 `;
 
 export const Nav = styled.nav`
