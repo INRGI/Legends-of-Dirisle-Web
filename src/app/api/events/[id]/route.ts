@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServiceClient } from "@/lib/supabase-server";
 import { v4 as uuidv4 } from "uuid";
 
-export async function PATCH(req: Request, context: { params: { id: string } }) {
+export async function PATCH(req: Request, context: any) {
   const { id } = context.params;
   const supabase = await createSupabaseServiceClient();
   const formData = await req.formData();
