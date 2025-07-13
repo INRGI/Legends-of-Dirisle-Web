@@ -16,6 +16,7 @@ import { PiNewspaperClipping } from "react-icons/pi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import AdminShop from "../StoreSection";
 import Loader from "../Loader";
+import EventsSection from "../EventsSection";
 
 const AdminClient = () => {
   const [loading, setLoading] = useState(true);
@@ -43,10 +44,7 @@ const AdminClient = () => {
     checkAuth();
   }, [router]);
 
-  if (loading)
-    return (
-      <Loader />
-    );
+  if (loading) return <Loader />;
   if (!authorized) return <DeniedContainer>Access denied</DeniedContainer>;
 
   return (
@@ -83,7 +81,9 @@ const AdminClient = () => {
             </SectionContainer>
           )}
           {activeSection === "events" && (
-            <SectionContainer>📅 Тут буде розділ Івенти</SectionContainer>
+            <SectionContainer>
+              <EventsSection onBack={() => setActiveSection(null)} />
+            </SectionContainer>
           )}
         </>
       )}

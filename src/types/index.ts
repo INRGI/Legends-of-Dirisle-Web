@@ -13,3 +13,11 @@ export interface Product {
   images: string[];
   created_at: string;
 }
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+}
