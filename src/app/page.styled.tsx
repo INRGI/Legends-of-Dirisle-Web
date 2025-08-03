@@ -17,7 +17,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 0 24px;
@@ -29,6 +28,7 @@ export const Container = styled.div`
   animation: ${smokeAnimation} 35s ease-in-out infinite;
   background-size: 250% 250%;
   text-align: center;
+  padding: 80px 16px 40px;
 `;
 
 export const VideoWrapper = styled.div`
