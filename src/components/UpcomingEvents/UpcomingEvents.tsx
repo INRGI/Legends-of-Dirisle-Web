@@ -66,7 +66,7 @@ export default function UpcomingEvents({ events }: Props) {
 
   return (
     <Wrapper>
-      <Title>Майбутні івенти</Title>
+      <Title>Найближчі івенти</Title>
       {upcomingEvents.length === 0 ? (
         <EmptyText>Немає майбутніх івентів</EmptyText>
       ) : (

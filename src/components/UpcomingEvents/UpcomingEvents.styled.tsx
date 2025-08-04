@@ -8,11 +8,16 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   padding: 0;
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #ff4444;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const List = styled.div`
@@ -46,6 +51,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 480px) {
+    padding: 0.8rem;
+  }
 `;
 
 export const EventTitle = styled.h3`
@@ -77,7 +86,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 99999;
   animation: fadeIn 0.3s ease forwards;
 
   @keyframes fadeIn {
@@ -95,11 +104,12 @@ export const ModalOverlay = styled.div`
 export const ModalContent = styled.div`
   background: #1a1a1a;
   border-radius: 12px;
-  padding: 1.5rem;
   max-width: 600px;
   width: 90%;
   color: #fff;
   position: relative;
+  margin: 0;
+  padding: 0;
 `;
 
 export const ModalImage = styled.img`
@@ -110,19 +120,30 @@ export const ModalImage = styled.img`
 `;
 
 export const ModalBody = styled.div`
-  margin-top: 1rem;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   h2 {
     font-size: 1.5rem;
-    margin-bottom: 0.6rem;
+    margin: 0;
+    padding: 0;
     color: #ff4444;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
   }
 
   p {
     font-size: 1rem;
     color: #ccc;
     line-height: 1.5;
-    margin-bottom: 1rem;
+    margin: 0;
+    padding: 0;
   }
 `;
 
