@@ -11,20 +11,6 @@ export default function Home() {
 
    const mockEvents: Event[] = [
     {
-      id: "1",
-      title: "Нічний рейд на авіабазу",
-      description: "Під покровом ночі збираємось біля північного входу на авіабазу. Всі з глушниками. Координація через рацію 2.",
-      date: "2025-08-01T20:00:00.000Z",
-      image: "https://qozpvechkkxefhsuwrfp.supabase.co/storage/v1/object/public/product-images/31dd88a4-564c-4916-8264-433affc890f7.png"
-    },
-    {
-      id: "2",
-      title: "Оборона Зеленогорська",
-      description: "Орди заражених насуваються на Зеленогорськ. Побудуйте барикади, використовуйте кулемети та координуйтеся з іншими гравцями. Виживе найміцніший.",
-      date: "2025-08-03T18:30:00.000Z",
-      image: "https://qozpvechkkxefhsuwrfp.supabase.co/storage/v1/object/public/product-images/31dd88a4-564c-4916-8264-433affc890f7.png"
-    },
-    {
       id: "3",
       title: "Полювання на гелікоптер",
       description: "Розвідка зафіксувала ворожий гелікоптер. Озброюйтесь і готуйтеся до захоплення. Хто перший – той і летить.",

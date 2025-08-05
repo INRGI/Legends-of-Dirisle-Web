@@ -47,7 +47,7 @@ export const Image = styled.img`
 `;
 
 export const Content = styled.div`
-  padding: 1rem 1.2rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -154,13 +154,16 @@ export const EventDate = styled.div`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 12px;
-  background: transparent;
-  color: #fff;
-  font-size: 1.6rem;
+  background: none;
   border: none;
+  color: #888;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 4px;
-  line-height: 1;
+  z-index: 999999;
+
+  &:hover {
+    color: #ff4444;
+  }
 `;
