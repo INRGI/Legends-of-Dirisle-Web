@@ -19,10 +19,8 @@ import {
   Title,
   Wrapper,
 } from "./UpcomingEvents.styled";
-
-type Props = {
-  events: Event[];
-};
+import Loader from "../Loader";
+import axios from "axios";
 
 type Countdown = {
   days: number;
@@ -31,9 +29,27 @@ type Countdown = {
   seconds: number;
 };
 
-export default function UpcomingEvents({ events }: Props) {
+export default function UpcomingEvents() {
   const [countdowns, setCountdowns] = useState<Record<string, Countdown>>({});
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get("/api/events");
+      setEvents(res.data);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const kyivDate = (isoDate: string) => {
     const date = new Date(isoDate);
@@ -67,54 +83,65 @@ export default function UpcomingEvents({ events }: Props) {
   return (
     <Wrapper>
       <Title>Найближчі івенти</Title>
-      {upcomingEvents.length === 0 ? (
-        <EmptyText>Немає майбутніх івентів</EmptyText>
+      {loading ? (
+        <Loader />
       ) : (
-        <List>
-          {upcomingEvents.map((event) => {
-            const countdown = countdowns[event.id];
-            return (
-              <Card key={event.id} onClick={() => setSelectedEvent(event)}>
-                <Image src={event.image} alt={event.title} />
-                <Content>
-                  <EventTitle>{event.title}</EventTitle>
-                  <Timer>
-                    {countdown ? (
-                      <>
-                        {countdown.days}д : {countdown.hours}г :{" "}
-                        {countdown.minutes}х : {countdown.seconds}с
-                      </>
-                    ) : (
-                      "Розрахунок..."
-                    )}
-                  </Timer>
-                </Content>
-              </Card>
-            );
-          })}
-        </List>
-      )}
+        <>
+          {upcomingEvents.length === 0 ? (
+            <EmptyText>Немає майбутніх івентів</EmptyText>
+          ) : (
+            <List>
+              {upcomingEvents.map((event) => {
+                const countdown = countdowns[event.id];
+                return (
+                  <Card key={event.id} onClick={() => setSelectedEvent(event)}>
+                    <Image src={event.image} alt={event.title} />
+                    <Content>
+                      <EventTitle>{event.title}</EventTitle>
+                      <Timer>
+                        {countdown ? (
+                          <>
+                            {countdown.days}д : {countdown.hours}г :{" "}
+                            {countdown.minutes}х : {countdown.seconds}с
+                          </>
+                        ) : (
+                          "Розрахунок..."
+                        )}
+                      </Timer>
+                    </Content>
+                  </Card>
+                );
+              })}
+            </List>
+          )}
 
-      {selectedEvent && (
-        <ModalOverlay onClick={() => setSelectedEvent(null)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <ModalImage src={selectedEvent.image} alt={selectedEvent.title} />
-            <ModalBody>
-              <h2>{selectedEvent.title}</h2>
-              <p>{selectedEvent.description}</p>
-              <EventDate>
-                Початок:{" "}
-                {kyivDate(selectedEvent.date).toLocaleString("uk-UA", {
-                  timeZone: "Europe/Kyiv",
-                  dateStyle: "long",
-                  timeStyle: "short",
-                })}{" "}
-                (за Києвом)
-              </EventDate>
-            </ModalBody>
-            <CloseButton onClick={() => setSelectedEvent(null)}>×</CloseButton>
-          </ModalContent>
-        </ModalOverlay>
+          {selectedEvent && (
+            <ModalOverlay onClick={() => setSelectedEvent(null)}>
+              <ModalContent onClick={(e) => e.stopPropagation()}>
+                <ModalImage
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                />
+                <ModalBody>
+                  <h2>{selectedEvent.title}</h2>
+                  <p>{selectedEvent.description}</p>
+                  <EventDate>
+                    Початок:{" "}
+                    {kyivDate(selectedEvent.date).toLocaleString("uk-UA", {
+                      timeZone: "Europe/Kyiv",
+                      dateStyle: "long",
+                      timeStyle: "short",
+                    })}{" "}
+                    (за Києвом)
+                  </EventDate>
+                </ModalBody>
+                <CloseButton onClick={() => setSelectedEvent(null)}>
+                  ×
+                </CloseButton>
+              </ModalContent>
+            </ModalOverlay>
+          )}
+        </>
       )}
     </Wrapper>
   );
