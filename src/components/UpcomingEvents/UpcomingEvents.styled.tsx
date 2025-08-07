@@ -117,14 +117,16 @@ export const ModalImage = styled.img`
   height: 240px;
   object-fit: cover;
   border-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `;
 
 export const ModalBody = styled.div`
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
 
   h2 {
     font-size: 1.5rem;
@@ -134,7 +136,6 @@ export const ModalBody = styled.div`
 
     @media (max-width: 480px) {
       font-size: 1rem;
-      padding: 0.5rem;
     }
   }
 
