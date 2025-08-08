@@ -31,25 +31,29 @@ export const Container = styled.div`
   padding: 80px 16px 40px;
 `;
 
-export const VideoWrapper = styled.div`
-  position: relative;
+export const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   width: 100%;
-  max-width: 720px;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+  margin: 0 auto;
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+
+    align-items: center;
+    gap: 16px;
+  }
 `;
 
-export const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-`;
 
 export const Description = styled.p`
-  max-width: 520px;
   color: #bbb;
   font-size: 1rem;
   line-height: 1.5;
